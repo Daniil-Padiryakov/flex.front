@@ -1,5 +1,6 @@
 import {IProject} from "../../domain/IProject";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {fetchUsers} from "./ActionCreators";
 
 interface ProjectSliceState {
     projects: IProject[]
@@ -18,20 +19,6 @@ export const projectSlice = createSlice({
     name: 'project',
     initialState,
     reducers: {
-        usersFetching(state) {
-            state.isLoading = true;
-            state.error = '';
-        },
-        usersFetchingSuccess(state, action: PayloadAction<IProject[]>) {
-            state.projects = action.payload;
-            state.currentProject = action.payload[0]
-            state.error = '';
-            state.isLoading = false;
-        },
-        usersFetchingError(state, action: PayloadAction<string>) {
-            state.isLoading = false;
-            state.error = action.payload;
-        },
         setCurrentProject(state, action: PayloadAction<IProject>) {
             state.currentProject = action.payload;
         },
@@ -52,6 +39,21 @@ export const projectSlice = createSlice({
             }
         }
     },
+    extraReducers: {
+        [fetchUsers.fulfilled.type]: (state, action: PayloadAction<IProject[]>) => {
+            state.projects = action.payload;
+            state.currentProject = action.payload[0]
+            state.error = '';
+            state.isLoading = false;
+        },
+        [fetchUsers.pending.type]: (state) => {
+            state.isLoading = true;
+        },
+        [fetchUsers.rejected.type]: (state, action: PayloadAction<string>) => {
+            state.isLoading = false;
+            state.error = action.payload;
+        },
+    }
 })
 
 export default projectSlice.reducer;

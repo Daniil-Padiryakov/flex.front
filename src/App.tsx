@@ -6,7 +6,7 @@ import {IProject} from "./domain/IProject";
 import {projectSlice} from "./store/reducers/ProjectSlice";
 const App = () => {
     const dispatch: AppDispatch = useAppDispatch();
-    const {projects, isLoading, currentProject} = useAppSelector(state => state.project)
+    const {projects, isLoading, error, currentProject} = useAppSelector(state => state.project)
     const {changeTodoIsDone, setCurrentProject} = projectSlice.actions;
     
     // const [newTodoTitle, setNewTodoTitle] = useState('');
@@ -28,6 +28,7 @@ const App = () => {
         <div className="App">
             <div className="sidebar">
                 {isLoading && <h3>Loading</h3>}
+                {error && <h3>{error}</h3>}
                 {projects.map(project => (
                     <div 
                         onClick={() => dispatch(setCurrentProject(project))} 
