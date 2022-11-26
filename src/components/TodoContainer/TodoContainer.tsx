@@ -9,6 +9,7 @@ const TodoContainer = () => {
     const {isLoading, currentProjectId} = useAppSelector(state => state.todo)
     const todos = useAppSelector(state => state.todo.todos
         .filter(todo => todo.project_id === currentProjectId))
+    // const currentProjectTitle = useAppSelector(state => state)
 
     useEffect(() => {
         dispatch(fetchTodos())
@@ -16,7 +17,7 @@ const TodoContainer = () => {
     }, [dispatch])
 
     return (
-        <div className="">
+        <div className="TodoContainer">
             {isLoading && <div className="spinner-border spinner-border-sm" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>}

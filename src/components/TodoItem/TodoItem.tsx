@@ -11,28 +11,27 @@ interface TodoItemProps {
 const TodoItem: FC<TodoItemProps> = ({todo}) => {
     const dispatch: AppDispatch = useAppDispatch();
     const {changeTodoIsDone} = todoSlice.actions;
-    // className={todo.children.length !== 0 ? 'TodoItem' : 'TodoItem__child'}
+    
     return (
-        <div style={{marginLeft: `${7 * 10}px`}} key={todo.id}>
-            <div >
-                <input onChange={() => dispatch(changeTodoIsDone(todo.id))}
-                       checked={todo.is_done}
-                       type="checkbox"
-                       style={{marginRight: "10px"}}/>
+        <div className="TodoItem" style={{marginLeft: `${5 * 10}px`}}>
+            <div className="TodoItem__parent" key={todo.id}>
+                    <input onChange={() => dispatch(changeTodoIsDone(todo.id))}
+                           checked={todo.is_done}
+                           type="checkbox"
+                           style={{marginRight: "10px"}}/>
 
-                <span className={todo.is_done ? "Todo__text_done" : "Todo__text"}
-                      style={{marginRight: "10px"}}>
+                    <span className={todo.is_done ? "Todo__text_done" : "Todo__text"}
+                          style={{marginRight: "10px"}}>
                              {todo.title}
             </span>
 
-                <button className="btn btn-danger" type={"button"}>Delete</button>
+                    <span className="TodoItem__delete">Delete</span>
             </div>
-            <div>
-                {todo.children.map(todo => (
-                    <TodoItem todo={todo} key={todo.id} />
-                ))}
-            </div>
+            {todo.children.map(todo => (
+                <TodoItem todo={todo} key={todo.id}/>
+            ))}
         </div>
+
     )
 }
 

@@ -4,7 +4,7 @@ import ProjectsContainer from "../ProjectsContainer/ProjectsContainer";
 const Sidebar = () => {
   return (
       <div className="Sidebar">
-          <h3>Sidebar</h3>
+          <h4 className="Sidebar__heading">Projects</h4>
           <ProjectsContainer />
       </div>       
   )

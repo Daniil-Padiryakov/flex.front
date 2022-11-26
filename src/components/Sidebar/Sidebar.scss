@@ -2,4 +2,8 @@
     background-color: #fafafa;
     border-radius: 10px;
     height: calc(100vh - 24px);
+    
+    &__heading {
+        margin-bottom: 20px;
+    }
 }
