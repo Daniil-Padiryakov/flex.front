@@ -3,4 +3,6 @@ export interface ITodo {
     title: string
     is_done: boolean
     project_id: number
+    children: ITodo[]
+    depth: number
 }

@@ -1,11 +1,14 @@
 import {configureStore} from '@reduxjs/toolkit'
-import {projectSlice} from './reducers/ProjectSlice'
+import {todoSlice} from './reducers/TodoSlice'
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import {projectApi} from "../services/ProjectService";
 
 const store = configureStore({
     reducer: {
-        project: projectSlice.reducer,
+        todo: todoSlice.reducer,
+        [projectApi.reducerPath]: projectApi.reducer,
     },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(projectApi.middleware)
 })
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch;

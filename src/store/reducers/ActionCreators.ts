@@ -1,10 +1,8 @@
-import {AppDispatch} from "../store";
 import axios from "axios";
-import {IProject} from "../../domain/IProject";
-import {projectSlice} from "./ProjectSlice";
 import {createAsyncThunk} from "@reduxjs/toolkit";
+import {ITodo} from "../../domain/ITodo";
 
-// export const fetchUsers = () => async (dispatch: AppDispatch) => {
+// export const fetchProjects = () => async (dispatch: AppDispatch) => {
 //     try {
 //         dispatch(projectSlice.actions.usersFetching())
 //         const response = await axios.get<IProject[]>('http://localhost:5010/project')
@@ -15,14 +13,14 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 //     }
 // }
 
-export const fetchUsers = createAsyncThunk(
-    'project/fetchAll',
+export const fetchTodos = createAsyncThunk(
+    'todo/fetchAll',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get<IProject[]>('http://localhost:5010/project')
+            const response = await axios.get<ITodo[]>('http://localhost:5010/todo')
             return response.data;
         } catch (e) {
-            return thunkAPI.rejectWithValue("Не удалось получить список проектов")
+            return thunkAPI.rejectWithValue("Cannot get list of todos")
         }
     }
 )
