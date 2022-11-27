@@ -24,3 +24,15 @@ export const fetchTodos = createAsyncThunk(
         }
     }
 )
+
+// export const fetchTodos = createAsyncThunk(
+//     'todo/fetchAll',
+//     async (_, thunkAPI) => {
+//         try {
+//             const response = await axios.get<ITodo[]>('http://localhost:5010/todo')
+//             return response.data;
+//         } catch (e) {
+//             return thunkAPI.rejectWithValue("Cannot get list of todos")
+//         }
+//     }
+// )

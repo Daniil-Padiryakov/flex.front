@@ -1,5 +1,5 @@
 import './Sidebar.scss';
-import ProjectsContainer from "../ProjectsContainer/ProjectsContainer";
+import ProjectsContainer from "../Project/ProjectsContainer/ProjectsContainer";
 
 const Sidebar = () => {
   return (

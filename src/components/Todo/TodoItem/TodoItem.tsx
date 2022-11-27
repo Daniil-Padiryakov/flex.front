@@ -1,8 +1,8 @@
 import './TodoItem.scss';
 import React, {FC} from "react";
-import {todoSlice} from "../../store/reducers/TodoSlice";
-import {ITodo} from "../../domain/ITodo";
-import {AppDispatch, useAppDispatch} from "../../store/store";
+import {todoSlice} from "../../../store/reducers/TodoSlice";
+import {ITodo} from "../../../domain/ITodo";
+import {AppDispatch, useAppDispatch} from "../../../store/store";
 
 interface TodoItemProps {
     todo: ITodo;

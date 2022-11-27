@@ -1,7 +1,7 @@
 import './ProjectForm.scss';
 import {FC, useState} from "react";
-import {useCreateProjectMutation} from "../../services/ProjectService";
-import {IProject} from "../../domain/IProject";
+import {useCreateProjectMutation} from "../../../services/ProjectService";
+import {IProject} from "../../../domain/IProject";
 
 const ProjectForm: FC<any> = ({setModal}) => {
     const [newProject, setNewProject] = useState({title: ''});

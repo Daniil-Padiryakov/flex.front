@@ -1,10 +1,10 @@
 import './ProjectsContainer.scss';
 import React, {useEffect, useState} from "react";
-import {todoSlice} from "../../store/reducers/TodoSlice";
-import {AppDispatch, useAppDispatch} from "../../store/store";
-import MyModal from "../MyModal/MyModal";
+import {todoSlice} from "../../../store/reducers/TodoSlice";
+import {AppDispatch, useAppDispatch} from "../../../store/store";
+import MyModal from "../../MyModal/MyModal";
 import ProjectForm from "../ProjectForm/ProjectForm";
-import {projectApi, useGetProjectsQuery} from '../../services/ProjectService'
+import {projectApi, useGetProjectsQuery} from '../../../services/ProjectService'
 
 const ProjectsContainer = () => {
     const [modal, setModal] = useState(false);

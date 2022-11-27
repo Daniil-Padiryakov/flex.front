@@ -1,5 +1,5 @@
 import './Main.scss';
-import TodoContainer from "../TodoContainer/TodoContainer";
+import TodoContainer from "../Todo/TodoContainer/TodoContainer";
 
 const Main = () => {
   return (

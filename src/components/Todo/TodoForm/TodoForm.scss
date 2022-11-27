@@ -1,0 +1,22 @@
+.ProjectForm {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    
+    &__heading {
+        margin-bottom: 20px;
+    }
+
+    &__input {
+        margin-bottom: 20px;
+    }
+    
+    &__btns {
+        display: flex;
+        margin-left: auto;
+    }
+
+    &__btn-close {
+        margin-right: 10px;
+    }
+}
