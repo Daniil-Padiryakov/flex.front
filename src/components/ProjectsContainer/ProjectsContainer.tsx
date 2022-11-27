@@ -1,13 +1,16 @@
 import './ProjectsContainer.scss';
-import {projectApi} from "../../services/ProjectService";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {todoSlice} from "../../store/reducers/TodoSlice";
 import {AppDispatch, useAppDispatch} from "../../store/store";
+import MyModal from "../MyModal/MyModal";
+import ProjectForm from "../ProjectForm/ProjectForm";
+import {projectApi, useGetProjectsQuery} from '../../services/ProjectService'
 
 const ProjectsContainer = () => {
+    const [modal, setModal] = useState(false);
     const dispatch: AppDispatch = useAppDispatch();
-    const useFetchAllProjects = projectApi.endpoints.fetchAllProjects.useQuery
-    const {data: projects, isLoading} = useFetchAllProjects('')
+    // const useGetProjectsQuery = projectApi.endpoints.getProjects.useQuery;
+    const {data: projects, isLoading} = useGetProjectsQuery('')
     const {changeCurrentProjectId} = todoSlice.actions;
     
     useEffect(() => {
@@ -22,6 +25,14 @@ const ProjectsContainer = () => {
     if (!projects) return <div>Missing projects!</div>
     return (
         <div className="ProjectsContainer">
+            <button
+                onClick={(e) => setModal(true)}
+                className="btn btn-success"
+                type="button">Add project
+            </button>
+            <MyModal isVisible={modal} setIsVisible={setModal}>
+                <ProjectForm setModal={setModal} />
+            </MyModal>
             <ul>
                 {projects.map((project: any) => (
                     <div
