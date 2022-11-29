@@ -1,17 +1,24 @@
 import './TodoForm.scss';
 import {FC, useState} from "react";
-import {useCreateProjectMutation} from "../../../services/ProjectService";
 import {ITodo} from "../../../domain/ITodo";
+import {createTodo} from "../../../store/reducers/ActionCreators";
+import {AppDispatch, useAppDispatch, useAppSelector} from "../../../store/store";
 
-const TodoForm: FC<any> = ({setModal}) => {
+const TodoForm: FC<any> = () => {
+    const dispatch: AppDispatch = useAppDispatch();
     const [newTodo, setNewTodo] = useState({title: ''});
-    const [createProject, {}] = useCreateProjectMutation();
+    const {currentProjectId} = useAppSelector(state => state.todo)
 
     const handleCreateTodo = async (e: any) => {
         e.preventDefault();
-        // await createProject({title: newTodo.title});
+        await dispatch(createTodo(
+            {
+                title: newTodo.title, 
+                parent_id: 0, 
+                project_id: currentProjectId,
+                children: [] as ITodo[],
+            } as ITodo));
         setNewTodo({title: ''})
-        setModal(false)
     }
 
     return (

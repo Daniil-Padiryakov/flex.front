@@ -3,6 +3,8 @@ import React, {FC} from "react";
 import {todoSlice} from "../../../store/reducers/TodoSlice";
 import {ITodo} from "../../../domain/ITodo";
 import {AppDispatch, useAppDispatch} from "../../../store/store";
+import {debug} from "util";
+import {deleteTodo} from "../../../store/reducers/ActionCreators";
 
 interface TodoItemProps {
     todo: ITodo;
@@ -25,9 +27,11 @@ const TodoItem: FC<TodoItemProps> = ({todo}) => {
                              {todo.title}
             </span>
 
-                    <span className="TodoItem__delete">Delete</span>
+                    <span onClick={() => dispatch(deleteTodo(todo.id))} 
+                          className="TodoItem__delete">Delete
+                    </span>
             </div>
-            {todo.children.map(todo => (
+            {todo.children && todo?.children.map(todo => (
                 <TodoItem todo={todo} key={todo.id}/>
             ))}
         </div>

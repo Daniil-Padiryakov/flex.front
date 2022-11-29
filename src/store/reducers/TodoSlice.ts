@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {fetchTodos} from "./ActionCreators";
+import {createTodo, deleteTodo, fetchTodos} from "./ActionCreators";
 import {ITodo} from "../../domain/ITodo";
 
 interface TodoSliceState {
@@ -30,19 +30,53 @@ export const todoSlice = createSlice({
             }
         }
     },
-    extraReducers: {
-        [fetchTodos.fulfilled.type]: (state, action: PayloadAction<ITodo[]>) => {
+    extraReducers: (builder) => {
+        builder.addCase(fetchTodos.fulfilled, (state, action: PayloadAction<ITodo[]>) => {
             state.todos = action.payload;
             state.error = '';
             state.isLoading = false;
-        },
-        [fetchTodos.pending.type]: (state) => {
+        })
+        builder.addCase(fetchTodos.pending, (state) => {
             state.isLoading = true;
-        },
-        [fetchTodos.rejected.type]: (state, action: PayloadAction<string>) => {
+        })
+        builder.addCase(fetchTodos.rejected, (state, action) => {
             state.isLoading = false;
-            state.error = action.payload;
-        },
+            if (action.payload) {
+                // @ts-ignore
+                state.error = action.payload;
+            }
+        })
+        builder.addCase(createTodo.fulfilled, (state, {payload}) => {
+            console.log(payload)
+            state.todos.push(payload);
+            state.error = '';
+            state.isLoading = false;
+        })
+        builder.addCase(createTodo.pending, (state) => {
+            state.isLoading = true;
+        })
+        builder.addCase(createTodo.rejected, (state, action) => {
+            state.isLoading = false;
+            if (action.payload) {
+                // @ts-ignore
+                state.error = action.payload;
+            }
+        })
+        builder.addCase(deleteTodo.fulfilled, (state, {payload}) => {
+            state.todos = state.todos.filter(todo => todo.id !== payload[0].id);
+            state.error = '';
+            state.isLoading = false;
+        })
+        builder.addCase(deleteTodo.pending, (state) => {
+            state.isLoading = true;
+        })
+        builder.addCase(deleteTodo.rejected, (state, action) => {
+            state.isLoading = false;
+            if (action.payload) {
+                // @ts-ignore
+                state.error = action.payload;
+            }
+        })
     }
 })
 

@@ -1,5 +1,5 @@
 import './TodoContainer.scss';
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {AppDispatch, useAppDispatch, useAppSelector} from "../../../store/store";
 import {fetchTodos} from "../../../store/reducers/ActionCreators";
 import TodoItem from "../TodoItem/TodoItem";
