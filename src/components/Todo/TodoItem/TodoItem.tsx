@@ -15,7 +15,7 @@ const TodoItem: FC<TodoItemProps> = ({todo}) => {
     const {changeTodoIsDone} = todoSlice.actions;
     
     return (
-        <div className="TodoItem" style={{marginLeft: `${5 * 10}px`}}>
+        <div className="TodoItem" style={{marginLeft: `${2 * 10}px`}}>
             <div className="TodoItem__parent" key={todo.id}>
                     <input onChange={() => dispatch(changeTodoIsDone(todo.id))}
                            checked={todo.is_done}

@@ -9,7 +9,6 @@ import {projectApi, useGetProjectsQuery} from '../../../services/ProjectService'
 const ProjectsContainer = () => {
     const [modal, setModal] = useState(false);
     const dispatch: AppDispatch = useAppDispatch();
-    // const useGetProjectsQuery = projectApi.endpoints.getProjects.useQuery;
     const {data: projects, isLoading} = useGetProjectsQuery('')
     const {changeCurrentProjectId} = todoSlice.actions;
     

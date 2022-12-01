@@ -4,12 +4,13 @@ import {ITodo} from "../../domain/ITodo";
 
 export const fetchTodos = createAsyncThunk(
     'todo/fetchAll',
-    async (_, thunkAPI) => {
+    async (_, {rejectWithValue, dispatch}) => {
         try {
             const response = await axios.get<ITodo[]>('http://localhost:5010/todo')
+            
             return response.data;
         } catch (e) {
-            return thunkAPI.rejectWithValue("Cannot get list of todos")
+            return rejectWithValue("Cannot get list of todos")
         }
     }
 )

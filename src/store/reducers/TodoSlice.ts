@@ -1,9 +1,11 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {createTodo, deleteTodo, fetchTodos} from "./ActionCreators";
 import {ITodo} from "../../domain/ITodo";
+import {getTree} from "../../utils/getTree";
 
 interface TodoSliceState {
     todos: ITodo[]
+    todosOfCurrentProject: ITodo[]
     isLoading: boolean
     error: string
     currentProjectId: number
@@ -11,6 +13,7 @@ interface TodoSliceState {
 
 const initialState: TodoSliceState = {
     todos: [],
+    todosOfCurrentProject: [],
     isLoading: false,
     error: '',
     currentProjectId: 1,
@@ -22,17 +25,23 @@ export const todoSlice = createSlice({
     reducers: {
         changeCurrentProjectId(state, action: PayloadAction<number>) {
             state.currentProjectId = action.payload;
+            const todos = state.todos.filter(todo => todo.project_id === state.currentProjectId);
+
+            state.todosOfCurrentProject = getTree(todos);
         },
         changeTodoIsDone(state, action: PayloadAction<number>) {
             const todo = state.todos.find(todo => todo.id === action.payload)
             if (todo) {
                 todo.is_done = !todo.is_done;
             }
-        }
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchTodos.fulfilled, (state, action: PayloadAction<ITodo[]>) => {
             state.todos = action.payload;
+            const todos = state.todos.filter(todo => todo.project_id === state.currentProjectId);
+
+            state.todosOfCurrentProject = getTree(todos);
             state.error = '';
             state.isLoading = false;
         })
@@ -79,5 +88,6 @@ export const todoSlice = createSlice({
         })
     }
 })
+export const todosTree = (todos: ITodo[]): ITodo[] => getTree(todos);
 
 export default todoSlice.reducer;
