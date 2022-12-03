@@ -7,14 +7,14 @@ import {AppDispatch, useAppDispatch, useAppSelector} from "../../../store/store"
 const TodoForm: FC<any> = () => {
     const dispatch: AppDispatch = useAppDispatch();
     const [newTodo, setNewTodo] = useState({title: ''});
-    const {currentProjectId} = useAppSelector(state => state.todo)
+    const {currentProjectId, currentTodo} = useAppSelector(state => state.todo)
 
     const handleCreateTodo = async (e: any) => {
         e.preventDefault();
         await dispatch(createTodo(
             {
                 title: newTodo.title, 
-                parent_id: 0, 
+                parent_id: currentTodo ? currentTodo.id : 0, 
                 project_id: currentProjectId,
                 children: [] as ITodo[],
             } as ITodo));

@@ -10,22 +10,24 @@ import TodoModal from "../TodoModal/TodoModal";
 const TodoContainer = () => {
     const [modal, setModal] = useState(false);
     const dispatch: AppDispatch = useAppDispatch();
-    const {isLoading, currentProjectId} = useAppSelector(state => state.todo)
+    const {isLoading, currentProjectId, currentTodo} = useAppSelector(state => state.todo)
     const todos = useAppSelector(state => state.todo.todosOfCurrentProject)
 
+    // console.log(todos)
     useEffect(() => {
         dispatch(fetchTodos())
     }, [dispatch])
     return (
         <div className="TodoContainer">
-            <MyModal isVisible={modal} setIsVisible={setModal}>
-                <TodoModal setModal={setModal} />
-            </MyModal>
+            {currentTodo && <MyModal isVisible={modal} setIsVisible={setModal}>
+                <TodoModal setModal={setModal} todo={currentTodo} />
+            </MyModal>}
+
             {isLoading && <div className="spinner-border spinner-border-sm" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>}
             {currentProjectId && todos.map(todo => (
-                <TodoItem todo={todo} key={todo.id} />
+                <TodoItem setModal={setModal} todo={todo} key={todo.id} />
             ))}
             <TodoForm />
         </div>

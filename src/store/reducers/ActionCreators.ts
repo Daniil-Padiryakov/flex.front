@@ -18,7 +18,7 @@ export const fetchTodos = createAsyncThunk(
 export const createTodo = createAsyncThunk(
     'todo/createTodo',
     async (newTodo: ITodo, thunkAPI) => {
-        console.log(newTodo)
+        // console.log(newTodo)
         try {
             const response = await axios.post<ITodo>('http://localhost:5010/todo', newTodo)
             return response.data;
@@ -30,10 +30,17 @@ export const createTodo = createAsyncThunk(
 
 export const deleteTodo = createAsyncThunk(
     'todo/deleteTodo',
-    async (id: number, thunkAPI) => {
+    async (payload: any, thunkAPI) => {
+        console.log(payload)
+        const {id, idForDelete} = payload;
+        const params = idForDelete.join(',');
         try {
-            const response = await axios.delete<any>(`http://localhost:5010/todo/${id}`)
-            return response.data;
+            console.log('asdasd')
+            const response = await axios.delete<any>(`http://localhost:5010/todo/${params}`)
+            const result = response.data;
+            
+            result.id = idForDelete;
+            return result;
         } catch (e) {
             return thunkAPI.rejectWithValue("Cannot delete todo")
         }
