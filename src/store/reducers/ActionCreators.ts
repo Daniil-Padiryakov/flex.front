@@ -18,7 +18,6 @@ export const fetchTodos = createAsyncThunk(
 export const createTodo = createAsyncThunk(
     'todo/createTodo',
     async (newTodo: ITodo, thunkAPI) => {
-        // console.log(newTodo)
         try {
             const response = await axios.post<ITodo>('http://localhost:5010/todo', newTodo)
             return response.data;

@@ -10,6 +10,7 @@ interface TodoSliceState {
     error: string
     currentProjectId: number
     currentTodo: ITodo | null
+    menu: boolean
 }
 
 const initialState: TodoSliceState = {
@@ -19,6 +20,7 @@ const initialState: TodoSliceState = {
     error: '',
     currentProjectId: 1,
     currentTodo: null,
+    menu: false,
 }
 
 export const todoSlice = createSlice({
@@ -39,6 +41,9 @@ export const todoSlice = createSlice({
         },
         changeCurrentTodo(state, action: PayloadAction<ITodo>) {
             state.currentTodo = action.payload;
+        },
+        changeMenuVisible(state, action: PayloadAction<boolean>) {
+            state.menu = action.payload;
         },
     },
     extraReducers: (builder) => {
