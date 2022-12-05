@@ -45,3 +45,18 @@ export const deleteTodo = createAsyncThunk(
         }
     }
 )
+
+export const changeTodoProject = createAsyncThunk(
+    'todo/changeProject',
+    async (payload: any, thunkAPI) => {
+        const {id, projectId} = payload;
+        try {
+            const response = await axios.patch<any>(`http://localhost:5010/todo/change-project/${id}`, {
+                project_id: projectId,
+            })
+            return payload;
+        } catch (e) {
+            return thunkAPI.rejectWithValue("Cannot delete todo")
+        }
+    }
+)
