@@ -52,6 +52,8 @@ const TodoItem: FC<TodoItemProps> = ({todo, setModal, modal}) => {
                       style={{marginRight: "10px"}}>
                              {todo.title}
                 </span>
+                
+                <span style={{fontSize: "12px"}}>{todo.parent_title}</span>
 
                 <span className="TodoItem__parent-menu"
                       onClick={(e) => onMenu(e)}
@@ -63,10 +65,11 @@ const TodoItem: FC<TodoItemProps> = ({todo, setModal, modal}) => {
                 </span>
             </div>
             {todo.children && todo?.children.map(todo => (
-                <TodoItem setModal={() => setModal(true)}
-                          modal={modal}
-                          todo={todo}
-                          key={todo.id}
+                <TodoItem 
+                    setModal={() => setModal(true)}
+                    modal={modal}
+                    todo={todo}
+                    key={todo.id}
                 />
             ))}
         </div>

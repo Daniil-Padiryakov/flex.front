@@ -1,7 +1,7 @@
 import './TodoMenu.scss';
 import {FC, MutableRefObject, useEffect, useRef, useState} from "react";
 import {ITodo} from "../../../domain/ITodo";
-import {createTodo, deleteTodo} from "../../../store/reducers/ActionCreators";
+import {createTodo, deleteTodo} from "../../../store/reducers/thunks/todo";
 import {AppDispatch, useAppDispatch, useAppSelector} from "../../../store/store";
 import {getTreeIds} from "../../../utils/tree";
 import {todoSlice} from "../../../store/reducers/TodoSlice";

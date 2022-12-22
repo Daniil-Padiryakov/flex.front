@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {changeTodoProject, createTodo, deleteTodo, fetchTodos} from "./ActionCreators";
+import {changeTodoProject, createTodo, deleteTodo, fetchTodos} from "./thunks/todo";
 import {ITodo} from "../../domain/ITodo";
 import {getTreeIds, tree} from "../../utils/tree";
 
@@ -65,6 +65,7 @@ export const todoSlice = createSlice({
                 state.error = action.payload;
             }
         })
+        
         builder.addCase(createTodo.fulfilled, (state, {payload}) => {
             state.todos.push(payload);
             const todos = state.todos.filter(todo => todo.project_id === state.currentProjectId);
@@ -83,8 +84,8 @@ export const todoSlice = createSlice({
                 state.error = action.payload;
             }
         })
+        
         builder.addCase(deleteTodo.fulfilled, (state, {payload}) => {
-            console.log(payload)
             state.todos = state.todos.filter(todo => !payload.id.includes(todo.id));
             const todos = state.todos.filter(todo => todo.project_id === state.currentProjectId);
             
@@ -102,10 +103,11 @@ export const todoSlice = createSlice({
                 state.error = action.payload;
             }
         })
+        
         builder.addCase(changeTodoProject.fulfilled, (state, {payload}) => {
             state.todos = state.todos.map(todo => {
                 if (todo.id === payload.id) {
-                    return {...todo, project_id: payload.projectId};
+                    return {...todo, project_id: payload.projectId, parent_id: 0};
                 }
                 return todo;
             })

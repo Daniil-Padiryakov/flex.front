@@ -1,7 +1,7 @@
 import './TodoContainer.scss';
 import React, {useEffect, useState} from "react";
 import {AppDispatch, useAppDispatch, useAppSelector} from "../../../store/store";
-import {fetchTodos} from "../../../store/reducers/ActionCreators";
+import {fetchTodos} from "../../../store/reducers/thunks/todo";
 import TodoItem from "../TodoItem/TodoItem";
 import TodoForm from "../TodoForm/TodoForm";
 import MyModal from "../../MyModal/MyModal";

@@ -1,16 +1,13 @@
 import './TodoSubList.scss';
-import React, {FC, useEffect, useState} from "react";
-import {ITodo} from "../../../domain/ITodo";
-import {createTodo, fetchTodos} from "../../../store/reducers/ActionCreators";
+import React, {FC, useEffect} from "react";
+import {fetchTodos} from "../../../store/reducers/thunks/todo";
 import {AppDispatch, useAppDispatch, useAppSelector} from "../../../store/store";
-import MyModal from "../../MyModal/MyModal";
-import TodoModal from "../TodoModal/TodoModal";
 import TodoItem from "../TodoItem/TodoItem";
 import TodoForm from "../TodoForm/TodoForm";
 
 const TodoSubList: FC<any> = () => {
     const dispatch: AppDispatch = useAppDispatch();
-    const {isLoading, currentProjectId, currentTodo} = useAppSelector(state => state.todo)
+    const {isLoading, currentProjectId} = useAppSelector(state => state.todo)
     const todos = useAppSelector(state => state.todo.todosOfCurrentProject)
 
     useEffect(() => {

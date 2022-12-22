@@ -6,4 +6,5 @@ export interface ITodo {
     project_id: number
     children?: ITodo[]
     depth?: number
+    parent_title: string
 }
