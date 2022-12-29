@@ -1,34 +1,31 @@
 import './App.scss';
 import Header from "./components/Header/Header";
-import Sidebar from "./components/Sidebar/Sidebar";
-import Main from "./components/Main/Main";
+import Home from "./pages/Home";
+import {Route, Routes} from "react-router-dom";
+import Auth from "./pages/Auth";
+import {useEffect} from "react";
+import {AppDispatch, useAppDispatch, useAppSelector} from "./store/store";
+import {checkAuth} from "./store/reducers/thunks/auth";
+
 const App = () => {
-    // const dispatch: AppDispatch = useAppDispatch();
-    // const {projects, isLoading, error, currentProject} = useAppSelector(state => state.project)
-    // const {changeTodoIsDone, setCurrentProject} = todoSlice.actions;
+    const dispatch: AppDispatch = useAppDispatch();
+    // const {} = useAppSelector(state => state.auth)
+    // const {} = authSlice.actions;
     
-    // const [newTodoTitle, setNewTodoTitle] = useState('');
-    // const [currentProject, setCurrentProject] = useState(projects[0] as IProject);
-    
-    // useEffect( () => {
-    //          dispatch(fetchUsers())
-    // }, [])
-
-    // const handlerAddNewTodo = (e: React.MouseEvent<HTMLButtonElement>) => {
-    //     e.preventDefault();
-    //
-    //     setProjects([...todos, {id: Date.now(), title: newTodoTitle, is_done: false, project_id: 1}])
-    //     setNewTodoTitle('')
-    // }
-
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            dispatch(checkAuth())
+        }
+        // dispatch(checkAuth())
+    }, [])
     
     return (
         <div className="App">
             <Header />
-            <div className="content">
-                <Sidebar />
-                <Main />
-            </div>
+            <Routes>
+                <Route path="/" element={<Home />}></Route>
+                <Route path="/auth" element={<Auth />}></Route>
+            </Routes>
         </div>
     )
 };

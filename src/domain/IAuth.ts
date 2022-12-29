@@ -1,7 +1,11 @@
 import {IUser} from "./IUser";
 
-export interface IAuth {
+interface ITokens {
     accessToken: string;
     refreshToken: string;
+}
+
+export interface IAuth {
+    tokens: ITokens;
     user: IUser;
 }

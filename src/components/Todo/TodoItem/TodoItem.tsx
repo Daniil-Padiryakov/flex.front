@@ -12,7 +12,6 @@ interface TodoItemProps {
     setModal?: any;
 }
 
-
 const TodoItem: FC<TodoItemProps> = ({todo, setModal, modal}) => {
     const dispatch: AppDispatch = useAppDispatch();
     const {currentTodo, menu} = useAppSelector(state => state.todo)

@@ -1,0 +1,31 @@
+.registration {
+    width: 300px;
+    margin: 0 auto;
+    
+    &__input {
+        width: 100%;
+        height: 35px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 0 10px;
+        margin-bottom: 16px;
+    }
+
+    &__button {
+        width: 100%;
+        height: 40px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:disabled {
+            background-color: #ccc;
+            color: #666;
+            cursor: not-allowed;
+        }
+    }
+}
