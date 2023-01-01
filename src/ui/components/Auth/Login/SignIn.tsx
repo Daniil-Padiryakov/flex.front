@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import './login-form.scss'
-import { login } from '../../../store/reducers/thunks/auth'
-import { AppDispatch, useAppDispatch } from '../../../store/store'
+import { login } from '../../../../store/reducers/thunks/auth'
+import { AppDispatch, useAppDispatch } from '../../../../store/store'
 
-type LoginFormProps = {}
-
-const SignIn: React.FC<LoginFormProps> = () => {
+const SignIn: React.FC = () => {
     const dispatch: AppDispatch = useAppDispatch()
     const [username, setUsername] = useState('Terrence')
     const [password, setPassword] = useState('123')

@@ -1,10 +1,10 @@
 import './TodoMenu.scss'
 import { FC, MutableRefObject, useEffect, useRef, useState } from 'react'
-import { ITodo } from '../../../domain/ITodo'
-import { createTodo, deleteTodo } from '../../../store/reducers/thunks/todo'
-import { AppDispatch, useAppDispatch, useAppSelector } from '../../../store/store'
-import { getTreeIds } from '../../../utils/tree'
-import { todoSlice } from '../../../store/reducers/TodoSlice'
+import { ITodo } from '../../../../domain/ITodo'
+import { deleteTodo } from '../../../../store/reducers/thunks/todo'
+import { AppDispatch, useAppDispatch } from '../../../../store/store'
+import { getTreeIds } from '../../../../utils/tree'
+import { todoSlice } from '../../../../store/reducers/TodoSlice'
 import ProjectList from '../../Project/ProjectList/ProjectList'
 
 const TodoMenu: FC<any> = ({ todo }) => {

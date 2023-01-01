@@ -1,9 +1,9 @@
 import './ProjectList.scss'
-import React, { useEffect, useState } from 'react'
-import { todoSlice } from '../../../store/reducers/TodoSlice'
-import { AppDispatch, useAppDispatch, useAppSelector } from '../../../store/store'
-import { useGetProjectsQuery } from '../../../services/ProjectService'
-import { changeTodoProject } from '../../../store/reducers/thunks/todo'
+import React from 'react'
+import { todoSlice } from '../../../../store/reducers/TodoSlice'
+import { AppDispatch, useAppDispatch, useAppSelector } from '../../../../store/store'
+import { useGetProjectsQuery } from '../../../../services/ProjectService'
+import { changeTodoProject } from '../../../../store/reducers/thunks/todo'
 
 const ProjectList = () => {
     const dispatch: AppDispatch = useAppDispatch()

@@ -1,7 +1,7 @@
 import './TodoSubList.scss'
 import React, { FC, useEffect } from 'react'
-import { fetchTodos } from '../../../store/reducers/thunks/todo'
-import { AppDispatch, useAppDispatch, useAppSelector } from '../../../store/store'
+import { fetchTodos } from '../../../../store/reducers/thunks/todo'
+import { AppDispatch, useAppDispatch, useAppSelector } from '../../../../store/store'
 import TodoItem from '../TodoItem/TodoItem'
 import TodoForm from '../TodoForm/TodoForm'
 

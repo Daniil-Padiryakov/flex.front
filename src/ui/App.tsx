@@ -4,8 +4,8 @@ import Home from './pages/Home'
 import { Route, Routes } from 'react-router-dom'
 import Auth from './pages/Auth/Auth'
 import { useEffect } from 'react'
-import { AppDispatch, useAppDispatch, useAppSelector } from './store/store'
-import { checkAuth } from './store/reducers/thunks/auth'
+import { AppDispatch, useAppDispatch } from '../store/store'
+import { checkAuth } from '../store/reducers/thunks/auth'
 
 const App = () => {
     const dispatch: AppDispatch = useAppDispatch()

@@ -1,13 +1,13 @@
 import './ProjectForm.scss'
 import { FC, useState } from 'react'
-import { useCreateProjectMutation } from '../../../services/ProjectService'
-import { IProject } from '../../../domain/IProject'
-import { useAppSelector } from '../../../store/store'
+import { useCreateProjectMutation } from '../../../../services/ProjectService'
+import { IProject } from '../../../../domain/IProject'
+import { useAppSelector } from '../../../../store/store'
 
 const ProjectForm: FC<any> = ({ setModal }) => {
     const [newProject, setNewProject] = useState({ title: '' })
     const { user } = useAppSelector((state) => state.auth)
-    const [createProject, {}] = useCreateProjectMutation()
+    const [createProject] = useCreateProjectMutation()
 
     const handleCreateProject = async (e: any) => {
         e.preventDefault()

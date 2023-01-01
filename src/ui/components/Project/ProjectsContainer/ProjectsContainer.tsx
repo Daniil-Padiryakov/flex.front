@@ -1,10 +1,10 @@
 import './ProjectsContainer.scss'
 import React, { useEffect, useState } from 'react'
-import { todoSlice } from '../../../store/reducers/TodoSlice'
-import { AppDispatch, useAppDispatch } from '../../../store/store'
+import { todoSlice } from '../../../../store/reducers/TodoSlice'
+import { AppDispatch, useAppDispatch } from '../../../../store/store'
 import MyModal from '../../MyModal/MyModal'
 import ProjectForm from '../ProjectForm/ProjectForm'
-import { useGetProjectsQuery } from '../../../services/ProjectService'
+import { useGetProjectsQuery } from '../../../../services/ProjectService'
 
 const ProjectsContainer = () => {
     const [modal, setModal] = useState(false)
@@ -29,7 +29,7 @@ const ProjectsContainer = () => {
         return (
             <div>
                 Missing projects!
-                <button onClick={(e) => setModal(true)} className='btn btn-success' type='button'>
+                <button onClick={() => setModal(true)} className='btn btn-success' type='button'>
                     Add project
                 </button>
                 <MyModal isVisible={modal} setIsVisible={setModal}>
@@ -39,7 +39,7 @@ const ProjectsContainer = () => {
         )
     return (
         <div className='ProjectsContainer'>
-            <button onClick={(e) => setModal(true)} className='btn btn-success' type='button'>
+            <button onClick={() => setModal(true)} className='btn btn-success' type='button'>
                 Add project
             </button>
             <MyModal isVisible={modal} setIsVisible={setModal}>

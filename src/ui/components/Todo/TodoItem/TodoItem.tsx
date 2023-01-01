@@ -1,8 +1,8 @@
 import './TodoItem.scss'
 import React, { FC, useState } from 'react'
-import { todoSlice } from '../../../store/reducers/TodoSlice'
-import { ITodo } from '../../../domain/ITodo'
-import { AppDispatch, useAppDispatch, useAppSelector } from '../../../store/store'
+import { todoSlice } from '../../../../store/reducers/TodoSlice'
+import { ITodo } from '../../../../domain/ITodo'
+import { AppDispatch, useAppDispatch, useAppSelector } from '../../../../store/store'
 import TodoMenu from '../TodoMenu/TodoMenu'
 import menuIconSvg from '../../../assets/icons/menu-dots.svg'
 
