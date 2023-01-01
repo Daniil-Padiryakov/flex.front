@@ -1,33 +1,33 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import $api from "../../../api";
-import {IAuth} from "../../../domain/IAuth";
-import {LoginPayload} from "../AuthSlice";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import $api from '../../../api'
+import { IAuth } from '../../../domain/IAuth'
+import { LoginPayload } from '../AuthSlice'
+import axios from 'axios'
 
 export const login = createAsyncThunk(
     'auth/login',
-    async ({username, password}: LoginPayload, {rejectWithValue}) => {
+    async ({ username, password }: LoginPayload, { rejectWithValue }) => {
         try {
-            const response = await $api.post<IAuth>('auth/signin', {username, password})
+            const response = await $api.post<IAuth>('auth/signin', { username, password })
 
-            return response.data;
+            return response.data
         } catch (e) {
-            return rejectWithValue("Cannot get list of todos")
+            return rejectWithValue('Cannot get list of todos')
         }
-    }
+    },
 )
 
 export const registration = createAsyncThunk(
     'auth/registration',
-    async ({username, email, password}: any, {rejectWithValue}) => {
+    async ({ username, email, password }: any, { rejectWithValue }) => {
         try {
-            const response = await $api.post<IAuth>('auth/signup', {username, email, password})
+            const response = await $api.post<IAuth>('auth/signup', { username, email, password })
 
-            return response.data;
+            return response.data
         } catch (e) {
-            return rejectWithValue("Cannot get list of todos")
+            return rejectWithValue('Cannot get list of todos')
         }
-    }
+    },
 )
 
 // export const logout = createAsyncThunk(
@@ -37,15 +37,14 @@ export const registration = createAsyncThunk(
 //     }
 // )
 
-export const checkAuth = createAsyncThunk(
-    'auth/checkAuth',
-    async (_, {rejectWithValue}) => {
-        try {
-            const response = await axios.get<IAuth>('http://localhost:5010/auth/refresh', {withCredentials: true})
+export const checkAuth = createAsyncThunk('auth/checkAuth', async (_, { rejectWithValue }) => {
+    try {
+        const response = await axios.get<IAuth>('http://localhost:5010/auth/refresh', {
+            withCredentials: true,
+        })
 
-            return response.data;
-        } catch (e) {
-            return rejectWithValue("Cannot get list of todos")
-        }
+        return response.data
+    } catch (e) {
+        return rejectWithValue('Cannot get list of todos')
     }
-)
+})

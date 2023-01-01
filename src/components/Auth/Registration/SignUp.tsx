@@ -1,54 +1,54 @@
-import React, { useState } from 'react';
-import './registration-form.scss';
+import React, { useState } from 'react'
+import './registration-form.scss'
 
 const Registration: React.FC = () => {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const validateForm = () => {
-        return username.length > 0 && email.length > 0 && password.length > 0;
-    };
+        return username.length > 0 && email.length > 0 && password.length > 0
+    }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-    };
+        event.preventDefault()
+    }
 
     return (
-        <form className="registration" onSubmit={handleSubmit}>
-            <label className="login-form__label">
-                <span className="login-form__label-text">Username:</span>
+        <form className='registration' onSubmit={handleSubmit}>
+            <label className='login-form__label'>
+                <span className='login-form__label-text'>Username:</span>
                 <input
-                    className="login-form__input"
-                    type="text"
+                    className='login-form__input'
+                    type='text'
                     value={username}
-                    onChange={e => setUsername(e.target.value)}
+                    onChange={(e) => setUsername(e.target.value)}
                 />
             </label>
 
-            <label className="login-form__label">
-                <span className="login-form__label-text">Email:</span>
+            <label className='login-form__label'>
+                <span className='login-form__label-text'>Email:</span>
                 <input
-                    className="login-form__input"
-                    type="email"
+                    className='login-form__input'
+                    type='email'
                     value={password}
-                    onChange={e => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
             </label>
-            <label className="login-form__label">
-                <span className="login-form__label-text">Password:</span>
+            <label className='login-form__label'>
+                <span className='login-form__label-text'>Password:</span>
                 <input
-                    className="login-form__input"
-                    type="password"
+                    className='login-form__input'
+                    type='password'
                     value={password}
-                    onChange={e => setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
             </label>
-            <button type="submit" className="registration__button">
+            <button type='submit' className='registration__button'>
                 Register
             </button>
         </form>
-    );
-};
+    )
+}
 
-export default Registration;
+export default Registration

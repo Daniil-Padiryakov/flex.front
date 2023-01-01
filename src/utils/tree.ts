@@ -1,37 +1,37 @@
-import {ITodo} from "../domain/ITodo";
+import { ITodo } from '../domain/ITodo'
 
 export const tree = (items: any): ITodo[] => {
-    const itemsIdsByIndex: any = new Map();
-    const roots = [];
-    let item;
-    let i;
+    const itemsIdsByIndex: any = new Map()
+    const roots = []
+    let item
+    let i
 
     if (items.length !== 0) {
         for (i = 0; i < items.length; i++) {
-            itemsIdsByIndex[items[i].id] = i;
-            items[i].children = [];
+            itemsIdsByIndex[items[i].id] = i
+            items[i].children = []
         }
 
         for (i = 0; i < items.length; i++) {
-            item = items[i];
+            item = items[i]
             if (item?.parent_id !== 0) {
                 // console.log(item.parent_id)
                 // console.log(items[itemsIdsByIndex[item.parent_id]])
-                items[itemsIdsByIndex[item.parent_id]].children.push(item);
+                items[itemsIdsByIndex[item.parent_id]].children.push(item)
                 // console.log(items[itemsIdsByIndex[item.parent_id]])
             } else {
-                roots.push(item);
+                roots.push(item)
             }
         }
     }
-    return roots;
+    return roots
 }
 
 export const getNodeTreeById = (tree: any, id: any) => {
-    const stack = [tree];
+    const stack = [tree]
 
     while (stack.length > 0) {
-        const node = stack.pop();
+        const node = stack.pop()
         if (node.id === id) {
             return node
         }
@@ -42,12 +42,11 @@ export const getNodeTreeById = (tree: any, id: any) => {
 }
 
 export const getTreeIds = (tree: any) => {
-    const stack = [tree];
-    const result = [];
-
+    const stack = [tree]
+    const result = []
 
     while (stack.length > 0) {
-        const node = stack.pop();
+        const node = stack.pop()
         if (node.id !== undefined) {
             result.push(node.id)
         }
@@ -56,5 +55,5 @@ export const getTreeIds = (tree: any) => {
         }
     }
 
-    return result;
+    return result
 }

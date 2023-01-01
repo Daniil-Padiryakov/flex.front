@@ -13,17 +13,15 @@
         min-height: 80vh;
         margin-right: 15px;
     }
-    
+
     .main {
         display: flex;
         flex-direction: column;
         justify-content: center;
         min-height: 80vh;
-        
+
         .Todo {
-            
             &__text {
-                
                 &_done {
                     text-decoration: line-through;
                 }

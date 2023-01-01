@@ -1,11 +1,11 @@
-import {IUser} from "./IUser";
+import { IUser } from './IUser'
 
 interface ITokens {
-    accessToken: string;
-    refreshToken: string;
+    accessToken: string
+    refreshToken: string
 }
 
 export interface IAuth {
-    tokens: ITokens;
-    user: IUser;
+    tokens: ITokens
+    user: IUser
 }

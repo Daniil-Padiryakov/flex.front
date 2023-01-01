@@ -1,6 +1,6 @@
 .TodoItem {
     margin-bottom: 10px;
-    
+
     &__parent {
         margin-bottom: 5px;
         padding: 5px;
@@ -9,18 +9,18 @@
         border-bottom: #dedede 1px solid;
         display: flex;
         align-items: center;
-        
+
         &-menu {
             margin-left: auto;
             margin-right: 10px;
             width: 30px;
             cursor: pointer;
-            
+
             &-icon {
                 width: 14px;
                 opacity: 0;
                 transition: 0.3s;
-                
+
                 &_active {
                     width: 14px;
                     opacity: 1;
@@ -29,11 +29,11 @@
             }
         }
     }
-    
+
     &__child {
         margin-bottom: 10px;
     }
-    
+
     &__delete {
         border-bottom: #ff9393 1px solid;
         cursor: pointer;

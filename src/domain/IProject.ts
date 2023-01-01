@@ -1,4 +1,4 @@
-import {ITodo} from "./ITodo";
+import { ITodo } from './ITodo'
 
 export interface IProject {
     id: number

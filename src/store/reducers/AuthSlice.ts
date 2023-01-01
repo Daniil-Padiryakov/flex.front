@@ -1,10 +1,10 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {changeTodoProject, createTodo, deleteTodo, fetchTodos} from "./thunks/todo";
-import {ITodo} from "../../domain/ITodo";
-import {getTreeIds, tree} from "../../utils/tree";
-import {IUser} from "../../domain/IUser";
-import {checkAuth, login, registration} from "./thunks/auth";
-import {IAuth} from "../../domain/IAuth";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { changeTodoProject, createTodo, deleteTodo, fetchTodos } from './thunks/todo'
+import { ITodo } from '../../domain/ITodo'
+import { getTreeIds, tree } from '../../utils/tree'
+import { IUser } from '../../domain/IUser'
+import { checkAuth, login, registration } from './thunks/auth'
+import { IAuth } from '../../domain/IAuth'
 
 interface TodoSliceState {
     user: IUser | null
@@ -29,64 +29,62 @@ const initialState: TodoSliceState = {
 const auth = (state: any, payload: any) => {
     console.log(payload)
     localStorage.setItem('token', payload.tokens.accessToken)
-    state.user = payload.user;
-    state.isAuth = true;
+    state.user = payload.user
+    state.isAuth = true
 
-    state.error = '';
-    state.isLoading = false;
+    state.error = ''
+    state.isLoading = false
 }
 
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        login(state, action: PayloadAction) {
-            
-        },
+        login(state, action: PayloadAction) {},
     },
     extraReducers: (builder) => {
-        builder.addCase(login.fulfilled, (state, {payload}) => {
+        builder.addCase(login.fulfilled, (state, { payload }) => {
             auth(state, payload)
         })
         builder.addCase(login.pending, (state) => {
-            state.isLoading = true;
+            state.isLoading = true
         })
         builder.addCase(login.rejected, (state, action) => {
-            state.isLoading = false;
+            state.isLoading = false
             if (action.payload) {
                 // @ts-ignore
-                state.error = action.payload;
+                state.error = action.payload
             }
         })
 
-        builder.addCase(registration.fulfilled, (state, {payload}) => {
+        builder.addCase(registration.fulfilled, (state, { payload }) => {
             auth(state, payload)
         })
         builder.addCase(registration.pending, (state) => {
-            state.isLoading = true;
+            state.isLoading = true
         })
         builder.addCase(registration.rejected, (state, action) => {
-            state.isLoading = false;
+            state.isLoading = false
             if (action.payload) {
                 // @ts-ignore
-                state.error = action.payload;
+                state.error = action.payload
             }
         })
 
-        builder.addCase(checkAuth.fulfilled, (state, {payload}) => {
+        builder.addCase(checkAuth.fulfilled, (state, { payload }) => {
             auth(state, payload)
         })
         builder.addCase(checkAuth.pending, (state) => {
-            state.isLoading = true;
+            state.isLoading = true
         })
         builder.addCase(checkAuth.rejected, (state, action) => {
-            state.isLoading = false;
+            state.isLoading = false
             if (action.payload) {
                 // @ts-ignore
-                state.error = action.payload;
+                state.error = action.payload
             }
         })
-    }
+    },
 })
 
-export default authSlice.reducer;
+export default authSlice.reducer

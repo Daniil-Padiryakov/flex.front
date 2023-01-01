@@ -1,6 +1,6 @@
 // @ts-nocheck
-import {IProject} from "../domain/IProject";
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+import { IProject } from '../domain/IProject'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const projectApi = createApi({
     reducerPath: 'projectApi',
@@ -11,13 +11,13 @@ export const projectApi = createApi({
             if (token) {
                 headers.set('authorization', `Bearer ${token}`)
             }
-        }
+        },
     }),
     tagTypes: ['Project'],
     endpoints: (builder) => ({
         getProjects: builder.query({
             query: () => '/project',
-            providesTags: result => ['Project'],
+            providesTags: (result) => ['Project'],
         }),
         createProject: builder.mutation<IProject, IProject>({
             query: (project: IProject) => ({
@@ -26,12 +26,9 @@ export const projectApi = createApi({
                 body: project,
             }),
             invalidatesTags: ['Project'],
-        })
+        }),
     }),
 })
 
-export const {
-    useGetProjectsQuery,
-    useCreateProjectMutation,
-} = projectApi
+export const { useGetProjectsQuery, useCreateProjectMutation } = projectApi
 // export const {useFetchAllProjects} = projectApi.endpoints.fetchAllProjects.useQuery;
