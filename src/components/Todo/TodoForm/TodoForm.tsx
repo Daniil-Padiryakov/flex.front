@@ -8,6 +8,7 @@ const TodoForm: FC<any> = () => {
     const dispatch: AppDispatch = useAppDispatch();
     const [newTodo, setNewTodo] = useState({title: ''});
     const {currentProjectId, currentTodo} = useAppSelector(state => state.todo)
+    const {user} = useAppSelector(state => state.auth)
 
     const handleCreateTodo = async (e: any) => {
         e.preventDefault();
@@ -17,6 +18,7 @@ const TodoForm: FC<any> = () => {
                 parent_id: currentTodo ? currentTodo.id : 0, 
                 project_id: currentProjectId,
                 children: [] as ITodo[],
+                user_id: user?.id, 
             } as ITodo));
         setNewTodo({title: ''})
     }

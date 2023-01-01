@@ -1,12 +1,12 @@
-import axios from "axios";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {ITodo} from "../../../domain/ITodo";
+import $api from "../../../api";
 
 export const fetchTodos = createAsyncThunk(
     'todo/fetchAll',
     async (_, {rejectWithValue, dispatch}) => {
         try {
-            const response = await axios.get<ITodo[]>('http://localhost:5010/todo')
+            const response = await $api.get<ITodo[]>('http://localhost:5010/todo')
 
             return response.data;
         } catch (e) {
@@ -19,7 +19,7 @@ export const createTodo = createAsyncThunk(
     'todo/createTodo',
     async (newTodo: ITodo, thunkAPI) => {
         try {
-            const response = await axios.post<ITodo>('http://localhost:5010/todo', newTodo)
+            const response = await $api.post<ITodo>('http://localhost:5010/todo', newTodo)
             return response.data;
         } catch (e) {
             return thunkAPI.rejectWithValue("Cannot create todo")
@@ -34,7 +34,7 @@ export const deleteTodo = createAsyncThunk(
         const params = idForDelete.join(',');
         try {
             console.log('asdasd')
-            const response = await axios.delete<any>(`http://localhost:5010/todo/${params}`)
+            const response = await $api.delete<any>(`http://localhost:5010/todo/${params}`)
             const result = response.data;
 
             result.id = idForDelete;
@@ -50,7 +50,7 @@ export const changeTodoProject = createAsyncThunk(
     async (payload: any, thunkAPI) => {
         const {id, projectId} = payload;
         try {
-            const response = await axios.patch<any>(`http://localhost:5010/todo/change-project/${id}`, {
+            const response = await $api.patch<any>(`http://localhost:5010/todo/change-project/${id}`, {
                 project_id: projectId,
             })
             return payload;

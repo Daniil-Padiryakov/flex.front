@@ -13,6 +13,7 @@ const ProjectsContainer = () => {
     const {changeCurrentProjectId} = todoSlice.actions;
 
     useEffect(() => {
+        console.log(JSON.stringify(projects))
         if (projects) {
             dispatch(changeCurrentProjectId(projects[0]?.id));
         }
@@ -23,7 +24,16 @@ const ProjectsContainer = () => {
             <span className="visually-hidden">Loading...</span>
         </div>
     )
-    if (!projects) return <div>Missing projects!</div>
+    if (!projects) return <div>Missing projects!
+        <button
+            onClick={(e) => setModal(true)}
+            className="btn btn-success"
+            type="button">Add project
+        </button>
+        <MyModal isVisible={modal} setIsVisible={setModal}>
+            <ProjectForm setModal={setModal}/>
+        </MyModal>
+    </div>
     return (
         <div className="ProjectsContainer">
             <button

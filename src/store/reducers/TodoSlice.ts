@@ -8,7 +8,7 @@ interface TodoSliceState {
     todosOfCurrentProject: ITodo[]
     isLoading: boolean
     error: string
-    currentProjectId: number
+    currentProjectId: number | null
     currentTodo: ITodo | null
     menu: boolean
 }
@@ -18,7 +18,7 @@ const initialState: TodoSliceState = {
     todosOfCurrentProject: [],
     isLoading: false,
     error: '',
-    currentProjectId: 1,
+    currentProjectId: null,
     currentTodo: null,
     menu: false,
 }

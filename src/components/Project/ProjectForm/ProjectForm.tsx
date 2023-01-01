@@ -2,14 +2,16 @@ import './ProjectForm.scss';
 import {FC, useState} from "react";
 import {useCreateProjectMutation} from "../../../services/ProjectService";
 import {IProject} from "../../../domain/IProject";
+import {useAppSelector} from "../../../store/store";
 
 const ProjectForm: FC<any> = ({setModal}) => {
     const [newProject, setNewProject] = useState({title: ''});
+    const {user} = useAppSelector(state => state.auth)
     const [createProject, {}] = useCreateProjectMutation();
 
     const handleCreateProject = async (e: any) => {
         e.preventDefault();
-        await createProject({title: newProject.title} as IProject);
+        await createProject({title: newProject.title, user_id: user?.id} as IProject);
         setNewProject({title: ''})
         setModal(false)
     }
