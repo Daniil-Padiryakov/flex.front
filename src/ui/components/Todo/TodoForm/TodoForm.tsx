@@ -34,15 +34,13 @@ const TodoForm: FC<any> = () => {
                 placeholder='New todo name'
             />
 
-            <div className='TodoForm__btns'>
-                <button
-                    onClick={(e) => handleCreateTodo(e)}
-                    className='ProjectForm__btn-add btn btn-success'
-                    type='button'
-                >
-                    Add Todo
-                </button>
-            </div>
+            <button
+                onClick={(e) => handleCreateTodo(e)}
+                className='TodoForm__btn btn btn-success'
+                type='button'
+            >
+                Add Todo
+            </button>
         </form>
     )
 }

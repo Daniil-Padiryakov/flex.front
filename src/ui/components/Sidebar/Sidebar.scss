@@ -1,9 +1,10 @@
 .Sidebar {
-    background-color: #fafafa;
-    border-radius: 10px;
-    height: calc(100vh - 24px);
+  background-color: #fafafa;
+  border-radius: 10px;
+  height: calc(100vh - 24px);
+  padding: 16px;
 
-    &__heading {
-        margin-bottom: 20px;
-    }
+  &__heading {
+    margin-bottom: 20px;
+  }
 }

@@ -1,22 +1,12 @@
-.ProjectForm {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
+.TodoForm {
+  display: flex;
+  align-items: flex-start;
 
-    &__heading {
-        margin-bottom: 20px;
-    }
+  &__input {
+    margin-right: 10px;
+  }
 
-    &__input {
-        margin-bottom: 20px;
-    }
-
-    &__btns {
-        display: flex;
-        margin-left: auto;
-    }
-
-    &__btn-close {
-        margin-right: 10px;
-    }
+  &__btn {
+    flex-shrink: 0;
+  }
 }

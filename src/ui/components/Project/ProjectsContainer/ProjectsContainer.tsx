@@ -39,9 +39,18 @@ const ProjectsContainer = () => {
         )
     return (
         <div className='ProjectsContainer'>
-            <button onClick={() => setModal(true)} className='btn btn-success' type='button'>
-                Add project
-            </button>
+            <div className='ProjectsContainer__header'>
+                <h4>Projects</h4>
+                <button
+                    onClick={() => setModal(true)}
+                    className='btn btn-success'
+                    type='button'
+                    style={{ marginBottom: '16px' }}
+                >
+                    Add project
+                </button>
+            </div>
+
             <MyModal isVisible={modal} setIsVisible={setModal}>
                 <ProjectForm setModal={setModal} />
             </MyModal>

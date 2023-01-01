@@ -1,41 +1,41 @@
 .TodoItem {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 
-    &__parent {
-        margin-bottom: 5px;
-        padding: 5px;
-        padding-left: 10px;
-        border-radius: 25px;
-        border-bottom: #dedede 1px solid;
-        display: flex;
-        align-items: center;
+  &__parent {
+    margin-bottom: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    border-radius: 25px;
+    border: #dedede 1px solid;
+    display: flex;
+    align-items: center;
 
-        &-menu {
-            margin-left: auto;
-            margin-right: 10px;
-            width: 30px;
-            cursor: pointer;
+    &-menu {
+      margin-left: auto;
+      margin-right: 10px;
+      width: 30px;
+      cursor: pointer;
 
-            &-icon {
-                width: 14px;
-                opacity: 0;
-                transition: 0.3s;
+      &-icon {
+        width: 14px;
+        opacity: 0;
+        transition: 0.3s;
 
-                &_active {
-                    width: 14px;
-                    opacity: 1;
-                    transition: 0.3s;
-                }
-            }
+        &_active {
+          width: 14px;
+          opacity: 1;
+          transition: 0.3s;
         }
+      }
     }
+  }
 
-    &__child {
-        margin-bottom: 10px;
-    }
+  &__child {
+    margin-bottom: 10px;
+  }
 
-    &__delete {
-        border-bottom: #ff9393 1px solid;
-        cursor: pointer;
-    }
+  &__delete {
+    border-bottom: #ff9393 1px solid;
+    cursor: pointer;
+  }
 }
