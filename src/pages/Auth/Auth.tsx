@@ -11,13 +11,22 @@ const Auth = () => {
     };
 
     return (
-        <div>
+        <div className="Auth">
             {isSignUp ? (
                 <SignUp />
             ) : (
                 <SignIn />
             )}
-            Already signed up? <span onClick={toggleSignUp}>Go to login</span>
+            
+            {isSignUp ?
+                <span>Already signed up?
+                    <span onClick={toggleSignUp}> Go to login</span>
+                </span>
+                :
+                <span>Don’t have an account? 
+                    <span onClick={toggleSignUp}> Sign up</span>
+                </span>
+            }
         </div>
     );
 };

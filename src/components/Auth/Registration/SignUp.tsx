@@ -27,7 +27,7 @@ const Registration: React.FC = () => {
             </label>
 
             <label className="login-form__label">
-                <span className="login-form__label-text">Password:</span>
+                <span className="login-form__label-text">Email:</span>
                 <input
                     className="login-form__input"
                     type="email"
@@ -44,11 +44,9 @@ const Registration: React.FC = () => {
                     onChange={e => setPassword(e.target.value)}
                 />
             </label>
-            <button type="submit" className="registration__button" disabled={!validateForm()}>
+            <button type="submit" className="registration__button">
                 Register
             </button>
-
-            Already signed up? Go to login
         </form>
     );
 };

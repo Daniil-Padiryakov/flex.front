@@ -2,7 +2,7 @@ import './App.scss';
 import Header from "./components/Header/Header";
 import Home from "./pages/Home";
 import {Route, Routes} from "react-router-dom";
-import Auth from "./pages/Auth";
+import Auth from "./pages/Auth/Auth";
 import {useEffect} from "react";
 import {AppDispatch, useAppDispatch, useAppSelector} from "./store/store";
 import {checkAuth} from "./store/reducers/thunks/auth";

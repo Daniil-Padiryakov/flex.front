@@ -25,6 +25,17 @@ const initialState: TodoSliceState = {
     error: '',
 }
 
+// todo refactor
+const auth = (state: any, payload: any) => {
+    console.log(payload)
+    localStorage.setItem('token', payload.tokens.accessToken)
+    state.user = payload.user;
+    state.isAuth = true;
+
+    state.error = '';
+    state.isLoading = false;
+}
+
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -32,27 +43,10 @@ export const authSlice = createSlice({
         login(state, action: PayloadAction) {
             
         },
-        // changeTodoIsDone(state, action: PayloadAction<number>) {
-        //     const todo = state.todos.find(todo => todo.id === action.payload)
-        //     if (todo) {
-        //         todo.is_done = !todo.is_done;
-        //     }
-        // },
-        // changeCurrentTodo(state, action: PayloadAction<ITodo>) {
-        //     state.currentTodo = action.payload;
-        // },
-        // changeMenuVisible(state, action: PayloadAction<boolean>) {
-        //     state.menu = action.payload;
-        // },
     },
     extraReducers: (builder) => {
         builder.addCase(login.fulfilled, (state, {payload}) => {
-            localStorage.setItem('token', payload.tokens.accessToken)
-            state.user = payload.user;
-            state.isAuth = true;
-            
-            state.error = '';
-            state.isLoading = false;
+            auth(state, payload)
         })
         builder.addCase(login.pending, (state) => {
             state.isLoading = true;
@@ -66,12 +60,7 @@ export const authSlice = createSlice({
         })
 
         builder.addCase(registration.fulfilled, (state, {payload}) => {
-            localStorage.setItem('token', payload.tokens.accessToken)
-            state.user = payload.user;
-            state.isAuth = true;
-
-            state.error = '';
-            state.isLoading = false;
+            auth(state, payload)
         })
         builder.addCase(registration.pending, (state) => {
             state.isLoading = true;
@@ -85,13 +74,7 @@ export const authSlice = createSlice({
         })
 
         builder.addCase(checkAuth.fulfilled, (state, {payload}) => {
-            console.log(payload)
-            localStorage.setItem('token', payload.tokens.accessToken)
-            state.user = payload.user;
-            state.isAuth = true;
-
-            state.error = '';
-            state.isLoading = false;
+            auth(state, payload)
         })
         builder.addCase(checkAuth.pending, (state) => {
             state.isLoading = true;

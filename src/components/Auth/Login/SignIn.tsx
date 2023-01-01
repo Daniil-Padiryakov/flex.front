@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import './login-form.scss';
+import {login} from "../../../store/reducers/thunks/auth";
+import {AppDispatch, useAppDispatch} from "../../../store/store";
 
 type LoginFormProps = {};
 
 const SignIn: React.FC<LoginFormProps> = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const dispatch: AppDispatch = useAppDispatch();
+    const [username, setUsername] = useState('Terrence');
+    const [password, setPassword] = useState('123');
     const [error, setError] = useState('');
 
     const validateForm = () => {
@@ -14,8 +17,7 @@ const SignIn: React.FC<LoginFormProps> = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // Attempt to login here
-        // If login fails, set error message: setError('Invalid username or password');
+        dispatch(login({username, password}))
     };
 
     return (
@@ -42,12 +44,9 @@ const SignIn: React.FC<LoginFormProps> = () => {
             <button
                 className="login-form__button"
                 type="submit"
-                disabled={!validateForm()}
             >
                 Login
             </button>
-
-            Don’t have an account? Sign up
         </form>
     );
 };

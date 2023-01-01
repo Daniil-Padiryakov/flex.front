@@ -14,7 +14,7 @@ const ProjectsContainer = () => {
 
     useEffect(() => {
         if (projects) {
-            dispatch(changeCurrentProjectId(projects[0].id));
+            dispatch(changeCurrentProjectId(projects[0]?.id));
         }
     }, [])
 

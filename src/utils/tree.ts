@@ -1,7 +1,7 @@
 import {ITodo} from "../domain/ITodo";
 
 export const tree = (items: any): ITodo[] => {
-    const itemsIdsByIndex: any = {};
+    const itemsIdsByIndex: any = new Map();
     const roots = [];
     let item;
     let i;
@@ -11,8 +11,6 @@ export const tree = (items: any): ITodo[] => {
             itemsIdsByIndex[items[i].id] = i;
             items[i].children = [];
         }
-
-        // console.log(itemsIdsByIndex)
 
         for (i = 0; i < items.length; i++) {
             item = items[i];
