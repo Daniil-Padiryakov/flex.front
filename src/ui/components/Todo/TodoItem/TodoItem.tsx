@@ -35,8 +35,7 @@ const TodoItem: FC<TodoItemProps> = ({ todo, setModal, modal }) => {
     return (
         <div
             onClick={(e) => onClick(e, todo)}
-            className='TodoItem'
-            style={{ marginLeft: `${2 * 10}px` }}
+            className={todo.parent_id ? 'TodoItem TodoItem__margin' : 'TodoItem'}
         >
             <div
                 className='TodoItem__parent'

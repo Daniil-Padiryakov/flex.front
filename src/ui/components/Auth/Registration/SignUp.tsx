@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import './registration-form.scss'
+import { AppDispatch, useAppDispatch } from '../../../../store/store'
+import { registration } from '../../../../store/reducers/thunks/auth'
 
 const Registration: React.FC = () => {
+    const dispatch: AppDispatch = useAppDispatch()
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -12,6 +15,7 @@ const Registration: React.FC = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        dispatch(registration({ username, email, password }))
     }
 
     return (
@@ -31,7 +35,7 @@ const Registration: React.FC = () => {
                 <input
                     className='login-form__input'
                     type='email'
-                    value={password}
+                    value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </label>

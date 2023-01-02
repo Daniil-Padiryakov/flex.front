@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import $api from '../../../api'
 import { IAuth } from '../../../domain/IAuth'
-import { LoginPayload } from '../AuthSlice'
+import { LoginPayload, SignupPayload } from '../AuthSlice'
 import axios from 'axios'
 
 export const login = createAsyncThunk(
@@ -19,7 +19,7 @@ export const login = createAsyncThunk(
 
 export const registration = createAsyncThunk(
     'auth/registration',
-    async ({ username, email, password }: any, { rejectWithValue }) => {
+    async ({ username, email, password }: SignupPayload, { rejectWithValue }) => {
         try {
             const response = await $api.post<IAuth>('auth/signup', { username, email, password })
 

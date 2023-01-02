@@ -1,10 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { changeTodoProject, createTodo, deleteTodo, fetchTodos } from './thunks/todo'
-import { ITodo } from '../../domain/ITodo'
-import { getTreeIds, tree } from '../../utils/tree'
+import { createSlice } from '@reduxjs/toolkit'
 import { IUser } from '../../domain/IUser'
 import { checkAuth, login, registration } from './thunks/auth'
-import { IAuth } from '../../domain/IAuth'
 
 interface TodoSliceState {
     user: IUser | null
@@ -15,6 +11,12 @@ interface TodoSliceState {
 
 export interface LoginPayload {
     username: string
+    password: string
+}
+
+export interface SignupPayload {
+    username: string
+    email: string
     password: string
 }
 
@@ -39,9 +41,7 @@ const auth = (state: any, payload: any) => {
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {
-        login(state, action: PayloadAction) {},
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(login.fulfilled, (state, { payload }) => {
             auth(state, payload)
@@ -51,10 +51,9 @@ export const authSlice = createSlice({
         })
         builder.addCase(login.rejected, (state, action) => {
             state.isLoading = false
-            if (action.payload) {
-                // @ts-ignore
-                state.error = action.payload
-            }
+            // if (action.payload) {
+            //     state.error = action.payload
+            // }
         })
 
         builder.addCase(registration.fulfilled, (state, { payload }) => {
@@ -65,10 +64,9 @@ export const authSlice = createSlice({
         })
         builder.addCase(registration.rejected, (state, action) => {
             state.isLoading = false
-            if (action.payload) {
-                // @ts-ignore
-                state.error = action.payload
-            }
+            // if (action.payload) {
+            //     state.error = action.payload
+            // }
         })
 
         builder.addCase(checkAuth.fulfilled, (state, { payload }) => {
@@ -79,10 +77,9 @@ export const authSlice = createSlice({
         })
         builder.addCase(checkAuth.rejected, (state, action) => {
             state.isLoading = false
-            if (action.payload) {
-                // @ts-ignore
-                state.error = action.payload
-            }
+            // if (action.payload) {
+            //     state.error = action.payload
+            // }
         })
     },
 })
