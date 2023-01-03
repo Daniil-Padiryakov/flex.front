@@ -13,11 +13,10 @@ const ProjectsContainer = () => {
     const { changeCurrentProjectId } = todoSlice.actions
 
     useEffect(() => {
-        console.log(JSON.stringify(projects))
         if (projects) {
             dispatch(changeCurrentProjectId(projects[0]?.id))
         }
-    }, [])
+    }, [projects])
 
     if (isLoading)
         return (

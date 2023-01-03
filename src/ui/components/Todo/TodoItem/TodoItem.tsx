@@ -1,10 +1,11 @@
 import './TodoItem.scss'
-import React, { FC, useState } from 'react'
+import React, { FC, MutableRefObject, useRef, useState } from 'react'
 import { todoSlice } from '../../../../store/reducers/TodoSlice'
 import { ITodo } from '../../../../domain/ITodo'
 import { AppDispatch, useAppDispatch, useAppSelector } from '../../../../store/store'
 import TodoMenu from '../TodoMenu/TodoMenu'
 import menuIconSvg from '../../../assets/icons/menu-dots.svg'
+import { changeTodoComplete } from '../../../../store/reducers/thunks/todo'
 
 interface TodoItemProps {
     todo: ITodo
@@ -15,13 +16,14 @@ interface TodoItemProps {
 const TodoItem: FC<TodoItemProps> = ({ todo, setModal, modal }) => {
     const dispatch: AppDispatch = useAppDispatch()
     const { currentTodo } = useAppSelector((state) => state.todo)
-    const { changeTodoIsDone, changeCurrentTodo } = todoSlice.actions
+    const { changeCurrentTodo } = todoSlice.actions
     const [menuOpen, setMenuOpen] = useState(false)
     const [menuIcon, setMenuIcon] = useState(false)
+    const checkboxRef = useRef() as MutableRefObject<HTMLInputElement>
 
     const onClick = (e: any, todo: ITodo) => {
         e.stopPropagation()
-        if (!modal && !menuOpen) {
+        if (e.target !== checkboxRef.current && !modal && !menuOpen) {
             setModal(true)
         }
         dispatch(changeCurrentTodo(todo))
@@ -45,8 +47,11 @@ const TodoItem: FC<TodoItemProps> = ({ todo, setModal, modal }) => {
                 onMouseLeave={() => setMenuIcon(false)}
             >
                 <input
-                    onChange={() => dispatch(changeTodoIsDone(todo.id))}
+                    onChange={() =>
+                        dispatch(changeTodoComplete({ id: todo.id, is_completed: !todo.is_done }))
+                    }
                     checked={todo.is_done}
+                    ref={checkboxRef}
                     type='checkbox'
                     style={{ marginRight: '10px' }}
                 />

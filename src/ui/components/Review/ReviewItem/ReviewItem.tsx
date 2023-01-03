@@ -2,7 +2,6 @@ import './ReviewItem.scss'
 import React, { FC } from 'react'
 
 const ReviewItem: FC<any> = () => {
-
     return (
         <div className='ReviewItem'>
             <div className='ReviewItem__body'>

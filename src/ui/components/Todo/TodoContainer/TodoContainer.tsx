@@ -23,12 +23,7 @@ const TodoContainer = () => {
                     <TodoModal setModal={setModal} modal={modal} todo={currentTodo} />
                 </MyModal>
             )}
-
-            {isLoading && (
-                <div className='spinner-border spinner-border-sm' role='status'>
-                    <span className='visually-hidden'>Loading...</span>
-                </div>
-            )}
+            
             {currentProjectId &&
                 todos.map((todo) => (
                     <TodoItem setModal={setModal} modal={modal} todo={todo} key={todo.id} />

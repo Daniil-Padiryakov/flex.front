@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { IProject } from '../domain/IProject'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 

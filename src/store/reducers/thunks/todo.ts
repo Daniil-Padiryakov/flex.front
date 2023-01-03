@@ -39,6 +39,21 @@ export const deleteTodo = createAsyncThunk('todo/deleteTodo', async (payload: an
     }
 })
 
+export const changeTodoComplete = createAsyncThunk(
+    'todo/complete',
+    async (payload: any, thunkAPI) => {
+        const { id, is_completed } = payload
+        try {
+            const response = await $api.patch<any>(`http://localhost:5010/todo/complete/${id}`, {
+                is_completed: is_completed,
+            })
+            return payload
+        } catch (e) {
+            return thunkAPI.rejectWithValue('Cannot change complete todo')
+        }
+    },
+)
+
 export const changeTodoProject = createAsyncThunk(
     'todo/changeProject',
     async (payload: any, thunkAPI) => {

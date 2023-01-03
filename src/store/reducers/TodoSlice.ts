@@ -1,5 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { changeTodoProject, createTodo, deleteTodo, fetchTodos } from './thunks/todo'
+import {
+    changeTodoComplete,
+    changeTodoProject,
+    createTodo,
+    deleteTodo,
+    fetchTodos,
+} from './thunks/todo'
 import { ITodo } from '../../domain/ITodo'
 import { tree } from '../../utils/tree'
 
@@ -30,12 +36,6 @@ export const todoSlice = createSlice({
             const todos = state.todos.filter((todo) => todo.project_id === state.currentProjectId)
 
             state.todosOfCurrentProject = tree(todos)
-        },
-        changeTodoIsDone(state, action: PayloadAction<number>) {
-            const todo = state.todos.find((todo) => todo.id === action.payload)
-            if (todo) {
-                todo.is_done = !todo.is_done
-            }
         },
         changeCurrentTodo(state, action: PayloadAction<ITodo>) {
             state.currentTodo = action.payload
@@ -90,6 +90,28 @@ export const todoSlice = createSlice({
             state.isLoading = true
         })
         builder.addCase(deleteTodo.rejected, (state, action) => {
+            state.isLoading = false
+            // if (action.payload) {
+            //     state.error = action.payload
+            // }
+        })
+
+        builder.addCase(changeTodoComplete.fulfilled, (state, { payload }) => {
+            state.todos = state.todos.map((todo) => {
+                if (todo.id === payload.id) {
+                    return { ...todo, is_done: payload.is_completed }
+                }
+                return todo
+            })
+
+            state.todosOfCurrentProject = tree(state.todos)
+            state.error = ''
+            state.isLoading = false
+        })
+        builder.addCase(changeTodoComplete.pending, (state) => {
+            state.isLoading = true
+        })
+        builder.addCase(changeTodoComplete.rejected, (state, action) => {
             state.isLoading = false
             // if (action.payload) {
             //     state.error = action.payload
