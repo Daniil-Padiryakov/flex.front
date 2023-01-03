@@ -4,12 +4,10 @@ import { ITodo } from '../../../../domain/ITodo'
 import { deleteTodo } from '../../../../store/reducers/thunks/todo'
 import { AppDispatch, useAppDispatch } from '../../../../store/store'
 import { getTreeIds } from '../../../../utils/tree'
-import { todoSlice } from '../../../../store/reducers/TodoSlice'
 import ProjectList from '../../Project/ProjectList/ProjectList'
 
-const TodoMenu: FC<any> = ({ todo }) => {
+const TodoMenu: FC<any> = ({ todo, setMenuOpen }) => {
     const dispatch: AppDispatch = useAppDispatch()
-    const { changeMenuVisible } = todoSlice.actions
     const menuRef = useRef() as MutableRefObject<HTMLDivElement>
     const [projectList, setProjectList] = useState(false)
 
@@ -17,7 +15,7 @@ const TodoMenu: FC<any> = ({ todo }) => {
         const handleClickOutside = (e: any) => {
             if (!e.path.includes(menuRef.current)) {
                 setProjectList(false)
-                dispatch(changeMenuVisible(false))
+                setMenuOpen(false)
             }
         }
         document.body.addEventListener('click', handleClickOutside)

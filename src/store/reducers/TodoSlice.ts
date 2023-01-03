@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { changeTodoProject, createTodo, deleteTodo, fetchTodos } from './thunks/todo'
 import { ITodo } from '../../domain/ITodo'
-import { getTreeIds, tree } from '../../utils/tree'
+import { tree } from '../../utils/tree'
 
 interface TodoSliceState {
     todos: ITodo[]
@@ -42,9 +42,6 @@ export const todoSlice = createSlice({
         changeCurrentTodo(state, action: PayloadAction<ITodo>) {
             state.currentTodo = action.payload
         },
-        changeMenuVisible(state, action: PayloadAction<boolean>) {
-            state.menu = action.payload
-        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchTodos.fulfilled, (state, action: PayloadAction<ITodo[]>) => {
@@ -60,10 +57,9 @@ export const todoSlice = createSlice({
         })
         builder.addCase(fetchTodos.rejected, (state, action) => {
             state.isLoading = false
-            if (action.payload) {
-                // @ts-ignore
-                state.error = action.payload
-            }
+            // if (action.payload) {
+            //     state.error = action.payload
+            // }
         })
 
         builder.addCase(createTodo.fulfilled, (state, { payload }) => {
@@ -79,10 +75,9 @@ export const todoSlice = createSlice({
         })
         builder.addCase(createTodo.rejected, (state, action) => {
             state.isLoading = false
-            if (action.payload) {
-                // @ts-ignore
-                state.error = action.payload
-            }
+            // if (action.payload) {
+            //     state.error = action.payload
+            // }
         })
 
         builder.addCase(deleteTodo.fulfilled, (state, { payload }) => {
@@ -98,10 +93,9 @@ export const todoSlice = createSlice({
         })
         builder.addCase(deleteTodo.rejected, (state, action) => {
             state.isLoading = false
-            if (action.payload) {
-                // @ts-ignore
-                state.error = action.payload
-            }
+            // if (action.payload) {
+            //     state.error = action.payload
+            // }
         })
 
         builder.addCase(changeTodoProject.fulfilled, (state, { payload }) => {
@@ -122,10 +116,9 @@ export const todoSlice = createSlice({
         })
         builder.addCase(changeTodoProject.rejected, (state, action) => {
             state.isLoading = false
-            if (action.payload) {
-                // @ts-ignore
-                state.error = action.payload
-            }
+            // if (action.payload) {
+            //     state.error = action.payload
+            // }
         })
     },
 })

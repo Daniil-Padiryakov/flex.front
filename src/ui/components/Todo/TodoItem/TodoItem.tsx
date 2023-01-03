@@ -14,13 +14,14 @@ interface TodoItemProps {
 
 const TodoItem: FC<TodoItemProps> = ({ todo, setModal, modal }) => {
     const dispatch: AppDispatch = useAppDispatch()
-    const { currentTodo, menu } = useAppSelector((state) => state.todo)
-    const { changeTodoIsDone, changeCurrentTodo, changeMenuVisible } = todoSlice.actions
+    const { currentTodo } = useAppSelector((state) => state.todo)
+    const { changeTodoIsDone, changeCurrentTodo } = todoSlice.actions
+    const [menuOpen, setMenuOpen] = useState(false)
     const [menuIcon, setMenuIcon] = useState(false)
 
     const onClick = (e: any, todo: ITodo) => {
         e.stopPropagation()
-        if (!modal && !menu) {
+        if (!modal && !menuOpen) {
             setModal(true)
         }
         dispatch(changeCurrentTodo(todo))
@@ -29,7 +30,7 @@ const TodoItem: FC<TodoItemProps> = ({ todo, setModal, modal }) => {
     const onMenu = (e: any) => {
         e.stopPropagation()
         dispatch(changeCurrentTodo(todo))
-        dispatch(changeMenuVisible(true))
+        setMenuOpen(true)
     }
 
     return (
@@ -69,7 +70,11 @@ const TodoItem: FC<TodoItemProps> = ({ todo, setModal, modal }) => {
                         src={menuIconSvg}
                         alt='menu'
                     />
-                    {menu && currentTodo?.id === todo.id ? <TodoMenu todo={todo} /> : ''}
+                    {menuOpen && currentTodo?.id === todo.id ? (
+                        <TodoMenu todo={todo} setMenuOpen={setMenuOpen} />
+                    ) : (
+                        ''
+                    )}
                 </span>
             </div>
             {todo.children &&
