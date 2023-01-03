@@ -1,20 +1,18 @@
 import './ReviewForm.scss'
 import { FC } from 'react'
-import TodoItem from '../../Todo/TodoItem/TodoItem'
 import { useAppSelector } from '../../../../store/store'
+import ReviewItem from '../ReviewItem/ReviewItem'
 
 const ReviewForm: FC<any> = ({ setModal }) => {
     const { todosOfCurrentProject } = useAppSelector((state) => state.todo)
 
     return (
-        <div>
-            {todosOfCurrentProject.map((task) => (
-                <TodoItem todo={task} key={task.id} />
-            ))}
+        <div className='ReviewForm'>
+            <ReviewItem />
 
             <button
                 onClick={() => setModal(false)}
-                className='ProjectForm__btn-close btn btn-secondary'
+                className='ReviewForm__btn-close btn btn-secondary'
                 type='button'
             >
                 Close
