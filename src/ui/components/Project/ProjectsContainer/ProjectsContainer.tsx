@@ -5,6 +5,7 @@ import { AppDispatch, useAppDispatch } from '../../../../store/store'
 import MyModal from '../../MyModal/MyModal'
 import ProjectForm from '../ProjectForm/ProjectForm'
 import { useGetProjectsQuery } from '../../../../services/ProjectService'
+import { IProject } from '../../../../domain/IProject'
 
 const ProjectsContainer = () => {
     const [modal, setModal] = useState(false)
@@ -54,7 +55,7 @@ const ProjectsContainer = () => {
                 <ProjectForm setModal={setModal} />
             </MyModal>
             <ul>
-                {projects.map((project: any) => (
+                {projects.map((project: IProject) => (
                     <div
                         onClick={() => dispatch(changeCurrentProjectId(project.id))}
                         className={'project__item'}
