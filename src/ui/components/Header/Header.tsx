@@ -6,10 +6,6 @@ import { useState } from 'react'
 const Header = () => {
     const [modal, setModal] = useState(false)
 
-    const x = () => {
-        console.log('asd')
-    }
-
     return (
         <header className='Header'>
             <nav>

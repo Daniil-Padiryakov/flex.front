@@ -7,11 +7,6 @@ const SignIn: React.FC = () => {
     const dispatch: AppDispatch = useAppDispatch()
     const [username, setUsername] = useState('Terrence')
     const [password, setPassword] = useState('123')
-    const [error, setError] = useState('')
-
-    const validateForm = () => {
-        return username.length > 0 && password.length > 0
-    }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -20,7 +15,6 @@ const SignIn: React.FC = () => {
 
     return (
         <form className='login-form' onSubmit={handleSubmit}>
-            {error && <div className='login-form__error'>{error}</div>}
             <label className='login-form__label'>
                 <span className='login-form__label-text'>Username:</span>
                 <input
