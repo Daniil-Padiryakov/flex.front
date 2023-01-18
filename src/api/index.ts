@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { IAuth } from '../domain/IAuth'
 
-export const API_URL = `http://localhost:5010/`
+export const API_URL = 'http://localhost:5010/'
 
 const $api = axios.create({
     withCredentials: true,
@@ -9,6 +9,7 @@ const $api = axios.create({
 })
 
 $api.interceptors.request.use((config) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
     return config

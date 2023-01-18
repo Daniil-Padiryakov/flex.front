@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './registration-form.scss'
-import { AppDispatch, useAppDispatch } from '../../../../store/store'
+import { AppDispatch } from '../../../../store/store'
 import { registration } from '../../../../store/reducers/thunks/auth'
+import { useAppDispatch } from '../../../../store/hooks'
 
 const Registration: React.FC = () => {
     const dispatch: AppDispatch = useAppDispatch()
