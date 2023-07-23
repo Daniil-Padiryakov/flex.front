@@ -39,7 +39,7 @@ export const registration = createAsyncThunk(
 
 export const checkAuth = createAsyncThunk('auth/checkAuth', async (_, { rejectWithValue }) => {
     try {
-        const response = await axios.get<IAuth>('http://localhost:5010/auth/refresh', {
+        const response = await axios.get<IAuth>('http://localhost:3050/api/auth/refresh', {
             withCredentials: true,
         })
 

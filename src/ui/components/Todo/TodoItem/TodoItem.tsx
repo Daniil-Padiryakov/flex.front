@@ -2,10 +2,11 @@ import './TodoItem.scss'
 import React, { FC, MutableRefObject, useRef, useState } from 'react'
 import { todoSlice } from '../../../../store/reducers/TodoSlice'
 import { ITodo } from '../../../../domain/ITodo'
-import { AppDispatch, useAppDispatch, useAppSelector } from '../../../../store/store'
+import { AppDispatch } from '../../../../store/store'
 import TodoMenu from '../TodoMenu/TodoMenu'
 import menuIconSvg from '../../../assets/icons/menu-dots.svg'
 import { changeTodoComplete } from '../../../../store/reducers/thunks/todo'
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
 
 interface TodoItemProps {
     todo: ITodo

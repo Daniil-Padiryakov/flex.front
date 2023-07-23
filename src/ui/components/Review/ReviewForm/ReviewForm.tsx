@@ -1,7 +1,7 @@
 import './ReviewForm.scss'
 import { FC } from 'react'
-import { useAppSelector } from '../../../../store/store'
 import ReviewItem from '../ReviewItem/ReviewItem'
+import { useAppSelector } from '../../../../store/hooks'
 
 const ReviewForm: FC<any> = ({ setModal }) => {
     const { todosOfCurrentProject } = useAppSelector((state) => state.todo)

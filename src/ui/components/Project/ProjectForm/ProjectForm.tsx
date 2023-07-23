@@ -2,7 +2,7 @@ import './ProjectForm.scss'
 import { FC, useState } from 'react'
 import { useCreateProjectMutation } from '../../../../services/ProjectService'
 import { IProject } from '../../../../domain/IProject'
-import { useAppSelector } from '../../../../store/store'
+import { useAppSelector } from '../../../../store/hooks'
 
 const ProjectForm: FC<any> = ({ setModal }) => {
     const [newProject, setNewProject] = useState({ title: '' })

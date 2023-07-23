@@ -1,11 +1,12 @@
 import './ProjectsContainer.scss'
 import React, { useEffect, useState } from 'react'
 import { todoSlice } from '../../../../store/reducers/TodoSlice'
-import { AppDispatch, useAppDispatch } from '../../../../store/store'
+import { AppDispatch } from '../../../../store/store'
 import MyModal from '../../MyModal/MyModal'
 import ProjectForm from '../ProjectForm/ProjectForm'
 import { useGetProjectsQuery } from '../../../../services/ProjectService'
 import { IProject } from '../../../../domain/IProject'
+import { useAppDispatch } from '../../../../store/hooks'
 
 const ProjectsContainer = () => {
     const [modal, setModal] = useState(false)

@@ -2,9 +2,10 @@ import './TodoMenu.scss'
 import { FC, MutableRefObject, useEffect, useRef, useState } from 'react'
 import { ITodo } from '../../../../domain/ITodo'
 import { deleteTodo } from '../../../../store/reducers/thunks/todo'
-import { AppDispatch, useAppDispatch } from '../../../../store/store'
+import { AppDispatch } from '../../../../store/store'
 import { getTreeIds } from '../../../../utils/tree'
 import ProjectList from '../../Project/ProjectList/ProjectList'
+import { useAppDispatch } from '../../../../store/hooks'
 
 const TodoMenu: FC<any> = ({ todo, setMenuOpen }) => {
     const dispatch: AppDispatch = useAppDispatch()

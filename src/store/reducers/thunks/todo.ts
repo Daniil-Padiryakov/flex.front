@@ -6,7 +6,7 @@ export const fetchTodos = createAsyncThunk(
     'todo/fetchAll',
     async (_, { rejectWithValue, dispatch }) => {
         try {
-            const response = await $api.get<ITodo[]>('http://localhost:5010/todo')
+            const response = await $api.get<ITodo[]>('http://localhost:3050/api/todo')
 
             return response.data
         } catch (e) {
@@ -17,7 +17,7 @@ export const fetchTodos = createAsyncThunk(
 
 export const createTodo = createAsyncThunk('todo/createTodo', async (newTodo: ITodo, thunkAPI) => {
     try {
-        const response = await $api.post<ITodo>('http://localhost:5010/todo', newTodo)
+        const response = await $api.post<ITodo>('http://localhost:5000/todo', newTodo)
         return response.data
     } catch (e) {
         return thunkAPI.rejectWithValue('Cannot create todo')
@@ -29,7 +29,7 @@ export const deleteTodo = createAsyncThunk('todo/deleteTodo', async (payload: an
     const params = idForDelete.join(',')
     try {
         console.log('asdasd')
-        const response = await $api.delete<any>(`http://localhost:5010/todo/${params}`)
+        const response = await $api.delete<any>(`http://localhost:5000/todo/${params}`)
         const result = response.data
 
         result.id = idForDelete
@@ -44,7 +44,7 @@ export const changeTodoComplete = createAsyncThunk(
     async (payload: any, thunkAPI) => {
         const { id, is_completed } = payload
         try {
-            const response = await $api.patch<any>(`http://localhost:5010/todo/complete/${id}`, {
+            const response = await $api.patch<any>(`http://localhost:5000/todo/complete/${id}`, {
                 is_completed: is_completed,
             })
             return payload
@@ -60,7 +60,7 @@ export const changeTodoProject = createAsyncThunk(
         const { id, projectId } = payload
         try {
             const response = await $api.patch<any>(
-                `http://localhost:5010/todo/change-project/${id}`,
+                `http://localhost:5000/todo/change-project/${id}`,
                 {
                     project_id: projectId,
                 },

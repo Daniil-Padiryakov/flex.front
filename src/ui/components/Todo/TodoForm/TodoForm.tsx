@@ -2,7 +2,8 @@ import './TodoForm.scss'
 import { FC, useState } from 'react'
 import { ITodo } from '../../../../domain/ITodo'
 import { createTodo } from '../../../../store/reducers/thunks/todo'
-import { AppDispatch, useAppDispatch, useAppSelector } from '../../../../store/store'
+import { AppDispatch } from '../../../../store/store'
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
 
 const TodoForm: FC<any> = () => {
     const dispatch: AppDispatch = useAppDispatch()

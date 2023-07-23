@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { IAuth } from '../domain/IAuth'
 
-export const API_URL = 'http://localhost:5010/'
+export const API_URL = 'http://localhost:3050/api'
 
 const $api = axios.create({
     withCredentials: true,

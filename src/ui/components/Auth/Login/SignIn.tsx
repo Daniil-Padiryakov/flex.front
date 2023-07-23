@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './login-form.scss'
-import { AppDispatch, useAppDispatch } from '../../../../store/store'
+import { AppDispatch } from '../../../../store/store'
 import { login } from '../../../../store/reducers/thunks/auth'
+import { useAppDispatch } from '../../../../store/hooks'
 
 const SignIn: React.FC = () => {
     const dispatch: AppDispatch = useAppDispatch()
